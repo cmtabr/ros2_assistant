@@ -1,1 +1,1 @@
-# ros2_assistant
+# ROS2 LLM Assistant
