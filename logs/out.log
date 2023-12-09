@@ -1,0 +1,15 @@
+08-Dec-23 09:02:46 - Service Robot Logger - INFO - Logger Initializer
+08-Dec-23 09:03:01 - Service Robot Logger - INFO - Websocket data received: The item ordered by the user was: prego.
+The ordered item position is: [1, 2].
+08-Dec-23 09:15:37 - Service Robot Logger - INFO - Logger Initializer
+08-Dec-23 09:16:14 - Service Robot Logger - INFO - Websocket data received: The item ordered by the user was -> prego.
+The ordered item position is -> [1,2].
+08-Dec-23 09:16:14 - Service Robot Logger - INFO - Going to positions: 1.0, 2.0
+08-Dec-23 09:23:45 - Service Robot Logger - INFO - Logger Initializer
+08-Dec-23 09:24:04 - Service Robot Logger - INFO - Websocket data received: The item ordered by the user was -> prego. 
+Item position is -> [1, 2].
+08-Dec-23 09:24:04 - Service Robot Logger - INFO - Going to positions: 1.0, 2.0
+08-Dec-23 09:43:16 - Service Robot Logger - INFO - Logger Initializer
+08-Dec-23 09:45:54 - Service Robot Logger - INFO - Websocket data received: The item ordered by the user was -> prego.
+Item position is -> [1,2].
+08-Dec-23 09:45:54 - Service Robot Logger - INFO - Going to positions: 1.0, 2.0
