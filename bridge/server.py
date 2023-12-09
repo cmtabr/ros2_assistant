@@ -3,7 +3,7 @@
 # Libraries importing
 import re
 import subprocess
-import time
+from time import sleep
 from decouple import config
 from langchain.chat_models import ChatOpenAI
 from langchain.document_loaders import DirectoryLoader, TextLoader
@@ -19,6 +19,7 @@ from twilio.rest import Client
 
 
 # Environment variables definition
+bridge_launched = False
 OPENAI_KEY = config('OPENAI_API_KEY')
 ACCOUNT_SID = config('ACCOUNT_SID')
 AUTH_TOKEN = config('AUTH_TOKEN')
@@ -26,13 +27,12 @@ FROM_NUMBER = config('FROM_NUMBER')
 TO_NUMBER = config('TO_NUMBER')
 
 # Functions definition
-ros2_launched = False
-def launch_ros2(ros2_launched):
+def bridge_initializer(bridge_launched):
     launch_command = "ros2 launch rosbridge_server rosbridge_websocket_launch.xml"
     try:
-        if ros2_launched:
+        if not bridge_launched:
             subprocess.Popen(launch_command, shell=True)
-            ros2_launched = True
+            bridge_launched = True
     except subprocess.CalledProcessError as e:
         print(f"Error executing command: {e}")
 
@@ -100,21 +100,20 @@ class Twilio:
             print("Erro ao enviar mensagem: ", e)
 
 def main():
-    launch_ros2(ros2_launched)
     twilio = Twilio()
     client = roslibpy.Ros(host='localhost', port=9090)
     client.run()
-    talker = roslibpy.Topic(client, name='/state_machine_topic', 
+    publisher = roslibpy.Topic(client, name='/web_socket_topic', 
                             message_type='std_msgs/String')
     chat_model = ChatBotModel()
     while client.is_connected:
         output = chat_model.chat('prego')
         twilio.send_whatsapp(body=output, from_='whatsapp:'+ FROM_NUMBER, to='whatsapp:'+ TO_NUMBER)
-        talker.publish(roslibpy.Message({'data': output}))
-        print('Sending message...')
-        time.sleep(1)
+        publisher.publish(roslibpy.Message({'data': output}))
+        print(f'Data published to topic /web_socket_topic: {output}')
+        sleep(2)
         break
-    talker.unadvertise()
+    publisher.unadvertise()
     client.terminate()
     print("client disconnect")
 
