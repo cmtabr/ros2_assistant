@@ -26,7 +26,7 @@ class Logger(Node):
         self._logger.info('Logger Initializer')
 
     def logger_setup(self):
-        logging.basicConfig(filename='../assets/logs/out.log', 
+        logging.basicConfig(filename='../logs/out.log', 
                                         filemode='a', 
                                         format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                                         datefmt='%d-%b-%y %H:%M:%S',
