@@ -26,6 +26,9 @@ class WebSocket(Node):
                                                     10,
         )
         self._logger_publisher = self.create_publisher(Logger, 'logger_topic', 10)
+        self._robot_publisher = self.create_publisher(String, 
+                                                    'robot_controller_topic', 10
+        )
     
     def websocket_manager(self, msg):
         """
@@ -33,6 +36,7 @@ class WebSocket(Node):
         """
         log = Logger(log=f'Websocket data received: {msg.data}')
         self._logger_publisher.publish(log)
+        self._robot_publisher.publish(msg)
 
 def main():
     rclpy.init()
