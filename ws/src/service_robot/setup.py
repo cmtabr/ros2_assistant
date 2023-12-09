@@ -23,9 +23,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'socket = service_robot.web_socket:main',
+            'web_socket = service_robot.web_socket:main',
             'logger = service_robot.logger:main',
-            'state_machine = service_robot.state_machine:main',
             'robot_controller = service_robot.robot_controller:main',
         ],
     },
