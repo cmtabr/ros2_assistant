@@ -1,0 +1,6 @@
+langchain
+openai
+python-decouple
+roslibpy
+transforms3d
+twilio
