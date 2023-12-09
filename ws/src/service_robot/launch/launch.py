@@ -23,10 +23,10 @@ def generate_launch_description():
         name='robot',
         output='screen',
     )
-    state_machine = Node(
+    web_socket = Node(
         package='service_robot',
-        executable='state_machine',
-        name='state_machine',
+        executable='web_socket',
+        name='web_socket',
         output='screen',
     )
     log = Node(
@@ -39,18 +39,18 @@ def generate_launch_description():
     # Files 
 
     # Executors 
-    rvizz = ExecuteProcess(
-            cmd=['ros2', 'launch', 'turtlebot3_navigation2', 'navigation2.launch.py', 'use_sim_time:=True', 'map:=../assets/maps/maps.yaml'],
-            name='navigator_ros2',
-            output='screen'
-    )
+    # rvizz = ExecuteProcess(
+    #         cmd=['ros2', 'launch', 'turtlebot3_navigation2', 'navigation2.launch.py', 'use_sim_time:=True', 'map:=../assets/maps.yaml'],
+    #         name='navigator_ros2',
+    #         output='screen'
+    # )
 
     # Launch description
     return LaunchDescription([
         log,
         robot,
-        state_machine,
-        rvizz
+        web_socket,
+        # rvizz
     ])
 
 if __name__ == "__main__":
